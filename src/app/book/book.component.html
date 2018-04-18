@@ -1,42 +1,45 @@
 <div class='book-container'>
-  <mat-toolbar>
-    <h1>Book Details</h1>
-  </mat-toolbar>
-  <button mat-raised-button color='link' (click)='isEditing = true' *ngIf="!isEditing">
-    Edit
-    <mat-icon>mode_edit</mat-icon>
-  </button>
-  <button mat-raised-button color='primary' (click)='isEditing = false' *ngIf="isEditing">
-    Save
-    <mat-icon>save</mat-icon>
-  </button>
-  <button mat-raised-button color='warn' (click)='isEditing = false' *ngIf="isEditing">
-    Cancel
-    <mat-icon>remove_circle</mat-icon>
-  </button>
-  <ng-container *ngFor='let book of books'>
-    <mat-list *ngIf='book.id==this.paramMap.params.id'>
-      <mat-list-item>
-        Name:
-        <span *ngIf="!isEditing">{{book.name}}</span>
-        <input type="text" *ngIf="isEditing" [(ngModel)]="book.name" />
-
-      </mat-list-item>
-      <mat-list-item>
-        Author:
-        <span *ngIf='!isEditing'>{{book.author}}</span>
-        <input type="text" *ngIf="isEditing" [(ngModel)]="book.author" />
-      </mat-list-item>
-      <mat-list-item>
-        Number of pages:
-        <span *ngIf='!isEditing'>{{book.number_of_pages}}</span>
-        <input type="text" *ngIf="isEditing" [(ngModel)]="book. number_of_pages" />
-      </mat-list-item>
-      <mat-list-item>
-        Date of Publication:
-        <span *ngIf='!isEditing'>{{book.date_of_publication}}</span>
-        <input type="text" *ngIf="isEditing" [(ngModel)]="book.date_of_publication" />
-      </mat-list-item>
-    </mat-list>
-  </ng-container>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <mat-toolbar>
+      <h1>Book Details</h1>
+    </mat-toolbar>
+    <button mat-raised-button color='link' (click)='isEditing = true' *ngIf="!isEditing">
+      Edit
+      <mat-icon>mode_edit</mat-icon>
+    </button>
+    <button mat-raised-button color='primary' type='submit' (click)='isEditing = false' *ngIf="isEditing">
+      Save
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-raised-button color='warn' type='button' (click)='revertChanges(); isEditing = false' *ngIf="isEditing">
+      Cancel Changes
+      <mat-icon>remove_circle</mat-icon>
+    </button>
+    <ng-container *ngFor='let book of books'>
+      <mat-list *ngIf='book.id==this.paramMap.params.id'>
+        <mat-list-item>
+          Name:
+          <span *ngIf="!isEditing">{{this.bookForm.value.name}}</span>
+          <input type="text" *ngIf="isEditing" formControlName="name" [(ngModel)]='this.bookForm.value.name' />
+        </mat-list-item>
+        <mat-list-item>
+          Author:
+          <span *ngIf='!isEditing'>{{this.bookForm.value.author}}</span>
+          <input type="text" *ngIf="isEditing" formControlName="author" [(ngModel)]='this.bookForm.value.author' />
+        </mat-list-item>
+        <mat-list-item>
+          Number of pages:
+          <span *ngIf='!isEditing'>{{this.bookForm.value.number_of_pages}}</span>
+          <input type="text" *ngIf="isEditing" formControlName="number_of_pages" [(ngModel)]='this.bookForm.value.number_of_pages'
+          />
+        </mat-list-item>
+        <mat-list-item>
+          Date of Publication:
+          <span *ngIf='!isEditing'>{{this.bookForm.value.date_of_publication}}</span>
+          <input type="text" *ngIf="isEditing" formControlName="date_of_publication" [(ngModel)]='this.bookForm.value.date_of_publication'
+          />
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+  </form>
 </div>

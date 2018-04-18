@@ -4,6 +4,7 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainBoardComponent } from './main-board/main-board.component';
@@ -26,7 +27,8 @@ import { OrderByNamePipe } from './order-by-name.pipe';
     MaterialModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [BookService, MainBoardService, OrderByNamePipe],
   bootstrap: [AppComponent]
