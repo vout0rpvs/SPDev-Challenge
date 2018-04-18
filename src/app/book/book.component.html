@@ -1,0 +1,42 @@
+<div class='book-container'>
+  <mat-toolbar>
+    <h1>Book Details</h1>
+  </mat-toolbar>
+  <button mat-raised-button color='link' (click)='isEditing = true' *ngIf="!isEditing">
+    Edit
+    <mat-icon>mode_edit</mat-icon>
+  </button>
+  <button mat-raised-button color='primary' (click)='isEditing = false' *ngIf="isEditing">
+    Save
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-raised-button color='warn' (click)='isEditing = false' *ngIf="isEditing">
+    Cancel
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+  <ng-container *ngFor='let book of books'>
+    <mat-list *ngIf='book.id==this.paramMap.params.id'>
+      <mat-list-item>
+        Name:
+        <span *ngIf="!isEditing">{{book.name}}</span>
+        <input type="text" *ngIf="isEditing" [(ngModel)]="book.name" />
+
+      </mat-list-item>
+      <mat-list-item>
+        Author:
+        <span *ngIf='!isEditing'>{{book.author}}</span>
+        <input type="text" *ngIf="isEditing" [(ngModel)]="book.author" />
+      </mat-list-item>
+      <mat-list-item>
+        Number of pages:
+        <span *ngIf='!isEditing'>{{book.number_of_pages}}</span>
+        <input type="text" *ngIf="isEditing" [(ngModel)]="book. number_of_pages" />
+      </mat-list-item>
+      <mat-list-item>
+        Date of Publication:
+        <span *ngIf='!isEditing'>{{book.date_of_publication}}</span>
+        <input type="text" *ngIf="isEditing" [(ngModel)]="book.date_of_publication" />
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+</div>

@@ -1,0 +1,28 @@
+
+span{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+input {
+    font-size: 16px;
+    border-radius: 2px;
+    border:1px solid #3f51b5;
+    margin-left: 5px;
+    padding: 5px;
+    margin-right: 5px;
+}
+button{
+    margin: 10px;
+    margin-left:0px;
+}
+mat-list{
+    display: flex;
+}
+mat-list-item {
+    font-size: 18px;
+}
+mat-list-item span{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color:#3f51b5;
+}

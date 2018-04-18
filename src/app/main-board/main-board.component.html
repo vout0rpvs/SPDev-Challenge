@@ -1,0 +1,29 @@
+<div class='main-board-container'>
+    <mat-toolbar>
+      <h1>Dashboard</h1>
+    </mat-toolbar>
+  <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="date_of_publication">
+      <mat-header-cell *matHeaderCellDef> Date Of Publication </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date_of_publication}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef> Show Book </mat-header-cell>
+      <mat-cell *matCellDef="let element"><a mat-raised-button color='primary' routerLink='/book' (click)='storeBookId(element)'>Show Book</a></mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator (click)='togglePipe()' #paginator [length]="books.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
